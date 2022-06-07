@@ -92,7 +92,7 @@ func (a *MaxPriorityQueue) Less(i, j int) bool {
 
 func BuildPQ(arr []int) *MaxPriorityQueue {
 	pq := &MaxPriorityQueue{
-		Values: make([]int, 100),
+		Values: make([]int, len(arr)*2+1),
 		Size:   0,
 	}
 	for _, value := range arr {
@@ -104,7 +104,7 @@ func BuildPQ(arr []int) *MaxPriorityQueue {
 /***************** demo ******************/
 
 func TestPQ() {
-	var arr = []int{1, 3, 8, 6, 4, 2, 7, 100}
+	var arr = []int{1, 3, 8, 6, 4, 2, 7}
 	pq := BuildPQ(arr)
 	fmt.Println(pq)
 	for {
