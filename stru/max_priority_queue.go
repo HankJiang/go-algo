@@ -66,7 +66,7 @@ func (a *MaxPriorityQueue) Swim(x int) {
 // Sink 下沉第 x 个元素，以维护最大堆性质
 func (a *MaxPriorityQueue) Sink(x int) {
 	for {
-		if x <= a.Size {
+		if x < a.Size {
 			// 找到左右最大值
 			max := a.Left(x)
 			if a.Less(max, a.Right(x)) {
