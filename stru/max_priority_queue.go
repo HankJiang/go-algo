@@ -66,12 +66,17 @@ func (a *MaxPriorityQueue) Swim(x int) {
 // Sink 下沉第 x 个元素，以维护最大堆性质
 func (a *MaxPriorityQueue) Sink(x int) {
 	for {
-		if x < a.Size && a.Less(x, a.Left(x)) {
-			a.Swap(a.Left(x), x)
-			a.Sink(a.Left(x))
-		} else if x < a.Size && a.Less(x, a.Right(x)) {
-			a.Swap(a.Right(x), x)
-			a.Sink(a.Right(x))
+		if x <= a.Size {
+			// 找到左右最大值
+			max := a.Left(x)
+			if a.Less(max, a.Right(x)) {
+				max = a.Right(x)
+			}
+			// 和左右最大值交换
+			if a.Less(x, max) {
+				a.Swap(x, max)
+			}
+			x = max
 		} else {
 			break
 		}
